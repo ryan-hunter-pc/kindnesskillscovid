@@ -45,4 +45,13 @@ Rails.application.configure do
 
   # Raises error for missing translations.
   # config.action_view.raise_on_missing_translations = true
+
+  # Authenticate faster in feature specs
+  config.middleware.use Clearance::BackDoor
+
+  # Allow clearance to "send" emails in tests
+  config.action_mailer.default_url_options = { host: 'localhost:5000' }
+
+  # Perform jobs immediately in tests
+  config.active_job.queue_adapter = :inline
 end
