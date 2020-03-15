@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quickstart</title>
+  <title>Kindness Kills COVID-19</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -17,9 +17,9 @@
 <body class="font-sans min-h-screen bg-gray-300">
 <header>
   <%= render 'layouts/messages' %>
-  <div class="h-64 bg-gray-700">
-    <h1 class="pt-12 text-center text-4xl sm:text-6xl uppercase tracking-wide text-gray-500">
-      <%= link_to 'Quickstart', root_path %>
+  <div class="h-32 lg:h-64 bg-gray-700">
+    <h1 class="pt-6 lg:pt-12 text-center text-2xl lg:text-6xl uppercase tracking-wide text-gray-500">
+      <%= link_to 'Kindness Kills COVID-19', root_path %>
     </h1>
   </div>
 </header>
@@ -29,15 +29,17 @@
 </main>
 
 <footer>
-  <div class="max-w-5xl mx-auto flex items-center justify-between px-4">
-    <p class="text-center pt-4">&copy;Copyright 2020<%= "-#{Date.current.year}" if Date.current.year > 2020 %></p>
+  <div class="max-w-5xl mx-auto flex items-center justify-between p-4">
     <% if signed_in? %>
       <%= link_to 'Sign out', sign_out_path, method: :delete, class: 'link link-gray' %>
     <% else %>
       <% if current_page?(sign_in_path) %>
         <%= link_to 'Back to Home Page', root_path, class: 'link link-gray' %>
       <% else %>
-        <%= link_to 'Sign In', sign_in_path, class: 'link link-gray' %>
+        <p>Already have an account?</p>
+        <%= link_to fa_icon('arrow-right', text: 'Sign In', right: true),
+                    sign_in_path,
+                    class: 'link link-primary' %>
       <% end %>
     <% end %>
   </div>
