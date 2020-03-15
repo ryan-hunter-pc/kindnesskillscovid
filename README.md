@@ -1,24 +1,15 @@
-# README
+# Rails Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a newly generated Rails application using
+[RH Productions' Quickstart](https://github.com/ryan-hunter-pc/quickstart)
 
-Things you may want to cover:
+**You'll want to edit this README to document the specific application this will become.**
 
-* Ruby version
+# Development Environment
 
-* System dependencies
+To setup a new development environment:
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. Clone the codebase
+2. Run the setup script: `bin/setup`
+3. Run the development environment: `foreman start -f Procfile.dev`
+3. (Optional) Run a TDD environment in a separate terminal: `bundle exec guard`
