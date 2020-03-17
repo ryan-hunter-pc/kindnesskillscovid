@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Customer signs up", type: :system do
+RSpec.describe "Visitor signs up as customer", type: :system do
   scenario "with minimum required fields", focus: true do
     visit root_path
     click_on "Request an Errand"
