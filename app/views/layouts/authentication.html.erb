@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Quickstart</title>
+  <title>Kindness Kills COVID-19</title>
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
 
@@ -16,12 +16,14 @@
 
 <body class="font-sans">
 
-<div class="h-screen w-screen">
-  <header><%= render 'layouts/authentication/top_navigation' %></header>
+<div class="min-h-screen min-w-screen flex flex-col">
+  <header class="flex-initial"><%= render 'layouts/authentication/top_navigation' %></header>
 
-  <%= render 'layouts/messages' %>
+  <div class="flex-initial">
+    <%= render 'layouts/messages' %>
+  </div>
 
-  <main id="main-wrapper" role="main">
+  <main id="main-wrapper" role="main" class="bg-gray-200 h-full flex-1">
     <%= yield %>
   </main>
 </div>

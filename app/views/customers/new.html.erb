@@ -1,0 +1,32 @@
+<div class="max-w-3xl mx-auto pt-6 lg:pt-32 px-4">
+  <div class="bg-white rounded border-transparent overflow-hidden shadow-md">
+    <div class="bg-gray-800 text-gray-500 px-5 py-3">
+      <h1 class="text-lg text-center uppercase">Complete Your Profile</h1>
+    </div>
+
+    <section class="py-8 px-6">
+      <%= simple_form_for @customer do |f| %>
+        <div class="flex flex-wrap -mx-1">
+          <%= f.input :first_name, wrapper_html: { class: 'w-1/2 lg:w-1/2 px-1' } %>
+          <%= f.input :last_name, wrapper_html: { class: 'w-1/2 lg:w-1/2 px-1' } %>
+        </div>
+
+        <div class="flex flex-wrap -mx-1">
+          <%= f.input :address, wrapper_html: { class: 'w-3/4 lg:w-2/3 px-1' } %>
+          <%= f.input :unit, wrapper_html: { class: 'w-1/4 lg:w-1/3 px-1' } %>
+        </div>
+
+        <div class="flex flex-wrap -mx-1">
+          <%= f.input :city, wrapper_html: { class: 'w-full lg:w-1/2 px-1' } %>
+          <%= f.input :state, wrapper_html: { class: 'w-1/2 lg:w-1/4 px-1' } %>
+          <%= f.input :zip, wrapper_html: { class: 'w-1/2 lg:w-1/4 px-1' } %>
+        </div>
+
+        <%= submit_button f: f,
+                          text: 'Continue',
+                          icon: 'arrow-right',
+                          icon_right: true, class: 'btn-lg block w-full' %>
+      <% end %>
+    </section>
+  </div>
+</div>
