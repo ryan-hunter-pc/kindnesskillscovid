@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe "Visitor signs up as customer", type: :system do
-  scenario "with minimum required fields", focus: true do
+  scenario "with minimum required fields" do
     visit root_path
     click_on "Request an Errand"
-    fill_in "Email", with: "bob@example.com"
-    fill_in "Password", with: "password"
+    fill_in "Your Email", with: "bob@example.com"
+    fill_in "Choose a Password", with: "password"
     click_on "Continue"
     fill_in "First name", with: "Bob"
     fill_in "Last name", with: "Smith"
@@ -16,7 +16,7 @@ RSpec.describe "Visitor signs up as customer", type: :system do
     click_on "Continue"
 
     expect(page).to have_content "Account created successfully"
-    expect(page).to have_content "My Errands"
+    expect(page).to have_content "Dashboard"
     user = User.last
     expect(user.email).to eq "bob@example.com"
     customer = Customer.last
