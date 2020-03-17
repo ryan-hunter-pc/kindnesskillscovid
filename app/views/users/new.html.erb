@@ -1,28 +1,22 @@
-<div class="max-w-md mx-auto pt-0 md:pt-32 px-0 md:px-4">
-  <div class="bg-white md:rounded border-transparent overflow-hidden shadow-md">
-    <div class="bg-gray-800 text-gray-500 px-5 py-3">
-      <h1 class="text-lg text-center uppercase">Create Your Login</h1>
+<%= content_for :title, 'Create Your Login' %>
+
+<section class="py-8 px-6">
+  <%= simple_form_for @user do |form| %>
+    <%= render partial: '/users/form', object: form %>
+
+    <%= form.hidden_field :role %>
+
+    <div class="submit-field">
+      <%= submit_button f: form,
+                        text: 'Continue',
+                        icon: false,
+                        class: 'btn-lg block w-full' %>
     </div>
 
-    <section class="py-8 px-6">
-      <%= simple_form_for @user do |form| %>
-        <%= render partial: '/users/form', object: form %>
-
-        <%= form.hidden_field :role %>
-
-        <div class="submit-field">
-          <%= submit_button f: form,
-                            text: 'Continue',
-                            icon: false,
-                            class: 'btn-lg block w-full' %>
-        </div>
-
-        <div class="other-links mt-3">
-          <%= link_to 'Back',
-                      root_path,
-                      class: 'btn btn-lg btn-secondary block w-full text-center' %>
-        </div>
-      <% end %>
-    </section>
-  </div>
-</div>
+    <div class="other-links mt-3">
+      <%= link_to 'Back',
+                  root_path,
+                  class: 'btn btn-lg btn-secondary block w-full text-center' %>
+    </div>
+  <% end %>
+</section>

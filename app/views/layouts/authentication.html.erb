@@ -24,7 +24,15 @@
   </div>
 
   <main id="main-wrapper" role="main" class="bg-gray-200 h-full flex-1">
-    <%= yield %>
+    <div class="max-w-md mx-auto pt-0 md:pt-32 px-0 md:px-4">
+      <div class="bg-white md:rounded border-transparent overflow-hidden shadow-md">
+        <div class="bg-gray-800 text-gray-500 px-5 py-3">
+          <h1 class="text-lg text-center uppercase"><%= content_for :title %></h1>
+        </div>
+
+        <%= yield %>
+      </div>
+    </div>
   </main>
 </div>
 
