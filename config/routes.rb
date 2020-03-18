@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show]
 
   resources :customers, only: [:new, :create]
+  resources :volunteers, only: [:new, :create]
 
   namespace :admin do
     resources :users, except: [:new, :destroy]
