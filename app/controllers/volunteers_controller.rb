@@ -1,13 +1,13 @@
-class CustomersController < ApplicationController
+class VolunteersController < ApplicationController
   layout 'authentication'
 
   def new
-    @customer = Customer.new
+    @volunteer = Volunteer.new
   end
 
   def create
-    @customer = Customer.new(customer_params)
-    if @customer.save
+    @volunteer = Volunteer.new(volunteer_params)
+    if @volunteer.save
       redirect_to dashboard_path, notice: 'Account created successfully'
     else
       render :new
@@ -16,9 +16,9 @@ class CustomersController < ApplicationController
 
   private
 
-  def customer_params
+  def volunteer_params
     params
-      .require(:customer)
+      .require(:volunteer)
       .permit(:first_name, :last_name, :phone,
               :address, :unit, :city, :state, :zip)
       .merge(user_id: current_user.id)

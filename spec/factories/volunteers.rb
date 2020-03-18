@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :customer do
+  factory :volunteer do
     user
     first_name { Faker::Name.unique.first_name }
     last_name { Faker::Name.unique.last_name }

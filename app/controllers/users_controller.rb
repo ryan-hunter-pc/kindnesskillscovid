@@ -32,6 +32,8 @@ class UsersController < Clearance::UsersController
     case role_from_params
     when /customer/i
       new_customer_path
+    when /volunteer/i
+      new_volunteer_path
     else
       Clearance.configuration.redirect_url
     end
