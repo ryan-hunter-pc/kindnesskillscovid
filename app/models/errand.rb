@@ -1,5 +1,6 @@
 class Errand < ApplicationRecord
   belongs_to :customer
+  belongs_to :volunteer, optional: true
 
   enum status: { requested: 0 }
 
