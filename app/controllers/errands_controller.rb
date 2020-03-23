@@ -20,6 +20,19 @@ class ErrandsController < ApplicationController
     end
   end
 
+  def edit
+    @errand = Errand.find(params[:id])
+  end
+
+  def update
+    @errand = Errand.find(params[:id])
+    if @errand.update(errand_params)
+      redirect_to @errand, notice: 'Errand saved'
+    else
+      render :edit
+    end
+  end
+
   private
 
   def errand_params
