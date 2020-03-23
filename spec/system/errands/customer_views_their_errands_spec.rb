@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "Customer views list of errands", type: :system do
+RSpec.describe "Customer views their errands", type: :system do
   scenario 'is redirected from dashboard' do
     errand = create(:errand)
     customer = errand.customer
