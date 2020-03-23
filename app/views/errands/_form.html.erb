@@ -1,0 +1,14 @@
+<%= simple_form_for @errand do |f| %>
+  <%= f.input :short_description,
+              placeholder: 'e.g. Pickup prescription at Walgreens' %>
+  <%= f.input :full_description,
+              placeholder: 'All other info needed to complete the errand',
+              input_html: { rows: 10 } %>
+
+  <div class="flex items-center">
+    <%= submit_button f: f, class: 'btn-lg' %>
+    <%= link_to 'Cancel',
+                @errand.persisted? ? @errand : errands_path,
+                class: 'btn btn-lg btn-secondary ml-2' %>
+  </div>
+<% end %>

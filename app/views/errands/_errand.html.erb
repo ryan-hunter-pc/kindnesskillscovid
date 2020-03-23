@@ -1,0 +1,16 @@
+<%= link_to errand, id: dom_id(errand), class: "errand" do %>
+  <div class="p-6 border-b border-gray-300 hover:bg-blue-100">
+    <h3 class="short_description text-xl font-semibold"
+        title="<%= errand.short_description %>">
+      <%= truncate errand.short_description, length: 50 %>
+    </h3>
+
+    <div class="flex flex-wrap items-center justify-between">
+      <%= status_badge_for errand %>
+
+      <div class="text-teal-500 ml-4">
+        <%= fa_icon('map-marker-alt', text: "#{errand.city}, #{errand.state}") %>
+      </div>
+    </div>
+  </div>
+<% end %>

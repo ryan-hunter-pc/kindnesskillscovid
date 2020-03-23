@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :customers, only: [:new, :create]
   resources :volunteers, only: [:new, :create]
 
+  resources :errands, only: [:index, :show, :new, :create, :edit, :update]
+
   namespace :admin do
     resources :users, except: [:new, :destroy]
   end
