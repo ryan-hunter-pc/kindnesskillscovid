@@ -18,5 +18,15 @@
     <div class="mt-2"><%= status_badge_for @errand %></div>
 
     <div class="full_description mt-6"><%= simple_format @errand.full_description, class: 'py-1' %></div>
+
+    <div class="buttons mt-12 flex flex-wrap items-center justify-end">
+      <%= link_to fa_icon('trash', text: 'Delete Errand'),
+                  @errand,
+                  method: :delete,
+                  class: 'btn btn-sm btn-danger',
+                  data: {
+                      confirm: 'Are you sure you want to permanently remove this errand?',
+                  } %>
+    </div>
   </div>
 </div>

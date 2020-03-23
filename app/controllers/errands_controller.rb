@@ -33,6 +33,12 @@ class ErrandsController < ApplicationController
     end
   end
 
+  def destroy
+    @errand = Errand.find(params[:id])
+    @errand.destroy
+    redirect_to errands_path, notice: 'Errand deleted'
+  end
+
   private
 
   def errand_params
