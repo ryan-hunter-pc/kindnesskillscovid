@@ -1,0 +1,25 @@
+<%= content_for :title, 'My Errands' %>
+
+<%= content_for :left_menu do %>
+
+<% end %>
+
+<%= content_for :right_menu do %>
+  <%= link_to fa_icon('plus'), new_errand_path, title: 'New Errand', class: 'btn btn-primary' %>
+<% end %>
+
+<% if @errands.present? %>
+  <div class="max-w-3xl mx-auto lg:mt-12 lg:rounded lg:shadow-md">
+    <%= render @errands %>
+  </div>
+<% else %>
+  <section class="max-w-3xl mx-auto p-6 text-center">
+    <p class="py-4">No errands requested yet.</p>
+
+    <div class="mt-4">
+      <%= link_to fa_icon('plus', text: 'Request Errand'),
+                  new_errand_path,
+                  class: 'btn btn-lg btn-primary' %>
+    </div>
+  </section>
+<% end %>

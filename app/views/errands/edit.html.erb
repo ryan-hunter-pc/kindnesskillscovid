@@ -1,0 +1,12 @@
+<%= content_for :title, 'Edit Errand' %>
+
+<%= content_for :left_menu do %>
+  <%= link_to fa_icon('arrow-left'),
+              @errand,
+              title: 'Back',
+              class: 'btn btn-secondary' %>
+<% end %>
+
+<div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
+  <%= render 'form' %>
+</div>

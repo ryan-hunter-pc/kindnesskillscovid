@@ -1,5 +1,6 @@
 class Customer < ApplicationRecord
   belongs_to :user
+  has_many :errands
 
   validates :first_name, presence: true
   validates :last_name, presence: true

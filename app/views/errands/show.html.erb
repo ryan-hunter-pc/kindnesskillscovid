@@ -1,0 +1,32 @@
+<%= content_for :title, 'Errand' %>
+
+<%= content_for :left_menu do %>
+  <%= link_to fa_icon('arrow-left'), errands_path, class: 'btn btn-secondary' %>
+<% end %>
+
+<%= content_for :right_menu do %>
+  <%= link_to fa_icon('pencil-alt'),
+              edit_errand_path(@errand),
+              title: 'Edit Errand',
+              class: 'btn btn-warning' %>
+<% end %>
+
+<div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
+  <div id="<%= dom_id(@errand) %>" class="errand">
+    <h3 class="short_description text-xl font-semibold"><%= @errand.short_description %></h3>
+
+    <div class="mt-2"><%= status_badge_for @errand %></div>
+
+    <div class="full_description mt-6"><%= simple_format @errand.full_description, class: 'py-1' %></div>
+
+    <div class="buttons mt-12 flex flex-wrap items-center justify-end">
+      <%= link_to fa_icon('trash', text: 'Delete Errand'),
+                  @errand,
+                  method: :delete,
+                  class: 'btn btn-sm btn-danger',
+                  data: {
+                      confirm: 'Are you sure you want to permanently remove this errand?',
+                  } %>
+    </div>
+  </div>
+</div>
