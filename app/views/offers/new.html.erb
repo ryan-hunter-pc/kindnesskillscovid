@@ -1,0 +1,19 @@
+<%= content_for :title, 'New Offer' %>
+
+<%= content_for :left_menu do %>
+  <%= link_to fa_icon('arrow-left'),
+              @offer.errand,
+              title: 'Back',
+              class: 'btn btn-secondary' %>
+<% end %>
+
+<div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
+  <p class="text-lg font-semibold">You are submitting an offer to run the following errand
+    in <%= @offer.errand_location %>:</p>
+
+  <p class="text-blue-500 py-4"><%= @offer.errand_description %></p>
+
+  <div class="mt-6">
+    <%= render 'form' %>
+  </div>
+</div>

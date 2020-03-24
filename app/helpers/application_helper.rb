@@ -2,6 +2,7 @@ module ApplicationHelper
   def status_badge_for(model, options = {})
     status_colors = {
       requested: "yellow",
+      submitted: "yellow",
     }
 
     color = status_colors[model.status.to_sym]

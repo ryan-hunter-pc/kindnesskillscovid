@@ -1,7 +1,7 @@
 <%= content_for :title, 'Errand' %>
 
 <%= content_for :left_menu do %>
-  <%= link_to fa_icon('arrow-left'), errands_path, class: 'btn btn-secondary' %>
+  <%= link_to fa_icon('arrow-left'), request.referrer || errands_path, class: 'btn btn-secondary' %>
 <% end %>
 
 <%= content_for :right_menu do %>
@@ -27,6 +27,10 @@
                   data: {
                       confirm: 'Are you sure you want to permanently remove this errand?',
                   } if current_user.customer == @errand.customer %>
+
+      <%= link_to fa_icon('hand-pointer', text: 'Offer to Run This Errand'),
+                  new_errand_offer_path(@errand),
+                  class: 'btn btn-primary' if current_user.volunteer? %>
     </div>
   </div>
 </div>

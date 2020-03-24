@@ -10,11 +10,23 @@ class User < ApplicationRecord
     customer.present?
   end
 
+  def customer_id
+    customer&.id
+  end
+
   def volunteer?
     volunteer.present?
   end
 
+  def volunteer_id
+    volunteer&.id
+  end
+
   def errands
     (customer || volunteer)&.errands || Errand.none
+  end
+
+  def offers
+    volunteer&.offers
   end
 end

@@ -1,6 +1,7 @@
 class Volunteer < ApplicationRecord
   belongs_to :user
   has_many :errands
+  has_many :offers
 
   validates :first_name, presence: true
   validates :last_name, presence: true

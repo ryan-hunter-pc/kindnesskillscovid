@@ -8,7 +8,11 @@ Rails.application.routes.draw do
 
   resources :errands, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
     get 'search', on: :collection
+
+    resources :offers, only: [:new, :create]
   end
+
+  resources :offers, only: [:index, :show]
 
   namespace :admin do
     resources :users, except: [:new, :destroy]

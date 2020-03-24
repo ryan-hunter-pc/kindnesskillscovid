@@ -1,0 +1,17 @@
+<%= link_to offer, id: dom_id(offer), class: "offer" do %>
+  <div class="p-6 border-b border-gray-300 hover:bg-blue-100">
+    <h3 class="short_description text-xl font-semibold"
+        title="<%= offer.errand_description %>">
+      <%= truncate offer.errand_description, length: 50 %>
+    </h3>
+
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="text-sm text-gray-500">You offered <%= time_ago_in_words offer.created_at %> ago</div>
+      <%#= status_badge_for offer %>
+
+      <div class="text-teal-500 ml-4">
+        <%= fa_icon('map-marker-alt', text: offer.errand_location) %>
+      </div>
+    </div>
+  </div>
+<% end %>
