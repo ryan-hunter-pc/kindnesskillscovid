@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   resources :customers, only: [:new, :create]
   resources :volunteers, only: [:new, :create]
 
-  resources :errands, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :errands, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    get 'search', on: :collection
+  end
 
   namespace :admin do
     resources :users, except: [:new, :destroy]

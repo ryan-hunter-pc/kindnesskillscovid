@@ -1,0 +1,22 @@
+<%= content_for :title, 'Find Errands' %>
+
+<%= content_for :left_menu do %>
+  <%= link_to fa_icon('arrow-left'),
+              errands_path,
+              title: 'Back',
+              class: 'btn btn-secondary' %>
+<% end %>
+
+<% if @errands.present? %>
+
+  <div class="max-w-3xl mx-auto lg:mt-12 lg:rounded lg:shadow-md">
+    <%= render @errands %>
+  </div>
+
+<% else %>
+
+  <section class="max-w-3xl mx-auto p-6 text-center">
+      <p class="py-4">No errands requested yet.</p>
+  </section>
+
+<% end %>

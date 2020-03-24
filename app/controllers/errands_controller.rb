@@ -3,6 +3,10 @@ class ErrandsController < ApplicationController
     @errands = current_user.errands
   end
 
+  def search
+    @errands = Errand.requested.order(created_at: :desc).limit(10)
+  end
+
   def show
     @errand = Errand.find(params[:id])
   end
