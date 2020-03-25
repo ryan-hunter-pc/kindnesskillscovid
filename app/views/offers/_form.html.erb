@@ -1,0 +1,13 @@
+<%= simple_form_for [@offer.errand, @offer] do |f| %>
+  <%= f.input :message,
+              label: "(Optional) Message to include with offer",
+              input_html: { rows: 5 } %>
+
+  <div class="flex items-center">
+    <%= submit_button f: f, text: 'Send Offer', class: 'btn-lg' %>
+
+    <%= link_to 'Cancel',
+                @offer.errand,
+                class: 'btn btn-lg btn-secondary ml-2' %>
+  </div>
+<% end %>

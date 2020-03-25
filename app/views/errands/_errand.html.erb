@@ -1,16 +1,27 @@
 <%= link_to errand, id: dom_id(errand), class: "errand" do %>
   <div class="p-6 border-b border-gray-300 hover:bg-blue-100">
-    <h3 class="short_description text-xl font-semibold"
-        title="<%= errand.short_description %>">
-      <%= truncate errand.short_description, length: 50 %>
-    </h3>
+    <h3 class="short_description text-xl font-semibold"><%= errand.short_description %></h3>
 
     <div class="flex flex-wrap items-center justify-between">
       <%= status_badge_for errand %>
 
-      <div class="text-teal-500 ml-4">
-        <%= fa_icon('map-marker-alt', text: "#{errand.city}, #{errand.state}") %>
-      </div>
+      <% if current_user.customer? %>
+
+        <% if errand.requested? %>
+          <% if errand.offers.count > 0 %>
+            <div class="text-blue-500 font-bold ml-4"><%= pluralize(errand.offers.count, 'offer') %></div>
+          <% else %>
+            <div class="text-gray-500 ml-4">No offers yet</div>
+          <% end %>
+        <% end %>
+
+      <% else %>
+
+        <div class="text-teal-500 ml-4">
+          <%= fa_icon('map-marker-alt', text: "#{errand.city}, #{errand.state}") %>
+        </div>
+
+      <% end %>
     </div>
   </div>
 <% end %>

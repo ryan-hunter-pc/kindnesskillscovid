@@ -1,0 +1,31 @@
+<%= content_for :title, 'Offer' %>
+
+<%= content_for :left_menu do %>
+  <%= link_to fa_icon('arrow-left'), offers_path, class: 'btn btn-secondary' %>
+<% end %>
+
+<div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
+  <div id="<%= dom_id(@offer) %>" class="offer">
+    <h3 class="errand_description text-xl font-semibold"><%= @offer.errand_description %></h3>
+
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="mt-2"><%= status_badge_for @offer %></div>
+
+      <div class="errand_location mt-2 text-teal-500 font-semibold">
+        <%= fa_icon 'map-marker-alt', text: @offer.errand_location %>
+      </div>
+    </div>
+
+    <% if @offer.accepted? %>
+      <div class="accepted_at mt-2 text-sm text-gray-500">
+        <%= fa_icon 'clock', text: "Accepted #{time_ago_in_words(@offer.accepted_at)} ago" %>
+      </div>
+
+      <div class="mt-12">
+        <%= link_to fa_icon('arrow-right', text: 'View Errand Details', right: true),
+                    @offer.errand,
+                    class: 'btn btn-lg btn-primary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

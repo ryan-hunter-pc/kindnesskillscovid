@@ -3,6 +3,10 @@ class ErrandsController < ApplicationController
     @errands = current_user.errands
   end
 
+  def search
+    @errands = Errand.requested.order(created_at: :desc).limit(10)
+  end
+
   def show
     @errand = Errand.find(params[:id])
   end
@@ -44,7 +48,7 @@ class ErrandsController < ApplicationController
   def errand_params
     params
       .require(:errand)
-      .permit(:short_description, :full_description)
+      .permit(:status, :short_description, :full_description)
       .merge(customer_id: current_user.customer.id)
   end
 end

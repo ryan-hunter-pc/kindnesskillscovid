@@ -2,6 +2,9 @@ module ApplicationHelper
   def status_badge_for(model, options = {})
     status_colors = {
       requested: "yellow",
+      submitted: "yellow",
+      accepted: "blue",
+      completed: "green",
     }
 
     color = status_colors[model.status.to_sym]
@@ -22,6 +25,6 @@ module ApplicationHelper
     ]
     classes << options.delete(:class)
 
-    content_tag :span, model.status, class: classes.join(' ')
+    content_tag :span, model.status.titleize, class: classes.join(' ')
   end
 end

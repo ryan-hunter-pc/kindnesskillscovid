@@ -27,7 +27,7 @@ RSpec.describe "Customer requests errand", type: :system do
 
     expect(page).to have_content 'Errand saved'
     expect(page).to have_css('.short_description', text: "Pickup prescription at Walgreens")
-    expect(page).to have_css('.status', text: "requested")
+    expect(page).to have_css('.status', text: "Requested")
   end
 
   scenario 'with all possible fields' do
@@ -41,7 +41,7 @@ RSpec.describe "Customer requests errand", type: :system do
 
     expect(page).to have_content 'Errand saved'
     expect(page).to have_css('.short_description', text: "Pickup prescription at Walgreens")
-    expect(page).to have_css('.status', text: "requested")
+    expect(page).to have_css('.status', text: "Requested")
     expect(page).to have_css('.full_description', text: "Pickup prescription at Walgreens\nUnder Martha Smith")
   end
 end

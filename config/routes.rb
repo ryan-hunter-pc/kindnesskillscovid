@@ -6,7 +6,15 @@ Rails.application.routes.draw do
   resources :customers, only: [:new, :create]
   resources :volunteers, only: [:new, :create]
 
-  resources :errands, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+  resources :errands, only: [:index, :show, :new, :create, :edit, :update, :destroy] do
+    get 'search', on: :collection
+
+    resources :offers, only: [:new, :create]
+  end
+
+  resources :offers, only: [:index, :show] do
+    resources :acceptances, only: [:create]
+  end
 
   namespace :admin do
     resources :users, except: [:new, :destroy]

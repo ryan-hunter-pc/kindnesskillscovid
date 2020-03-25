@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_215716) do
+ActiveRecord::Schema.define(version: 2020_03_24_165833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,7 +37,22 @@ ActiveRecord::Schema.define(version: 2020_03_19_215716) do
     t.text "full_description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "volunteer_id"
     t.index ["customer_id"], name: "index_errands_on_customer_id"
+    t.index ["volunteer_id"], name: "index_errands_on_volunteer_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.bigint "errand_id", null: false
+    t.bigint "volunteer_id", null: false
+    t.integer "status", default: 0, null: false
+    t.text "message"
+    t.datetime "accepted_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["errand_id"], name: "index_offers_on_errand_id"
+    t.index ["status"], name: "index_offers_on_status"
+    t.index ["volunteer_id"], name: "index_offers_on_volunteer_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -68,5 +83,8 @@ ActiveRecord::Schema.define(version: 2020_03_19_215716) do
 
   add_foreign_key "customers", "users"
   add_foreign_key "errands", "customers"
+  add_foreign_key "errands", "volunteers"
+  add_foreign_key "offers", "errands"
+  add_foreign_key "offers", "volunteers"
   add_foreign_key "volunteers", "users"
 end

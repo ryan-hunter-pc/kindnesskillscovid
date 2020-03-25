@@ -1,32 +1,75 @@
 <%= content_for :title, 'Errand' %>
 
 <%= content_for :left_menu do %>
-  <%= link_to fa_icon('arrow-left'), errands_path, class: 'btn btn-secondary' %>
+  <%= link_to fa_icon('arrow-left'), request.referrer || errands_path, class: 'btn btn-secondary' %>
 <% end %>
 
 <%= content_for :right_menu do %>
   <%= link_to fa_icon('pencil-alt'),
               edit_errand_path(@errand),
               title: 'Edit Errand',
-              class: 'btn btn-warning' %>
+              class: 'btn btn-warning' if current_user.customer == @errand.customer %>
 <% end %>
 
 <div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
   <div id="<%= dom_id(@errand) %>" class="errand">
     <h3 class="short_description text-xl font-semibold"><%= @errand.short_description %></h3>
 
-    <div class="mt-2"><%= status_badge_for @errand %></div>
+    <div class="flex flex-wrap items-center justify-between">
+      <div class="mt-2"><%= status_badge_for @errand %></div>
+
+      <% if @errand.volunteer.present? %>
+        <div class="volunteer mt-2 text-teal-500 font-semibold">
+          <%= fa_icon('running', text: @errand.volunteer) %>
+        </div>
+      <% end %>
+    </div>
 
     <div class="full_description mt-6"><%= simple_format @errand.full_description, class: 'py-1' %></div>
 
+    <% if current_user.customer? && @errand.offers.submitted.present? %>
+      <div class="offers mt-12">
+        <h4 class="text-lg font-semibold">Offers to run this errand</h4>
+
+        <%= render partial: "errands/offer",
+                   collection: @errand.offers.submitted,
+                   as: :offer %>
+      </div>
+    <% end %>
+
     <div class="buttons mt-12 flex flex-wrap items-center justify-end">
-      <%= link_to fa_icon('trash', text: 'Delete Errand'),
-                  @errand,
-                  method: :delete,
-                  class: 'btn btn-sm btn-danger',
-                  data: {
-                      confirm: 'Are you sure you want to permanently remove this errand?',
-                  } %>
+      <% if current_user.customer? && current_user.customer == @errand.customer %>
+
+        <% if @errand.requested? %>
+          <%= link_to fa_icon('trash', text: 'Delete Errand'),
+                      @errand,
+                      method: :delete,
+                      class: 'link link-danger',
+                      data: {
+                          confirm: 'Are you sure you want to permanently remove this errand?',
+                      } %>
+        <% elsif @errand.accepted? %>
+          <%= button_to @errand,
+                        method: :patch,
+                        class: 'btn btn-success',
+                        params: {
+                            errand: {
+                                status: 'completed',
+                            },
+                        } do %>
+            <%= fa_icon 'check', text: 'Mark as Completed' %>
+          <% end %>
+        <% end %>
+
+      <% elsif current_user.volunteer? %>
+
+        <% if @errand.requested? %>
+          <%= link_to fa_icon('hand-pointer', text: 'Offer to Run This Errand'),
+                      new_errand_offer_path(@errand),
+                      class: 'btn btn-primary' if current_user.volunteer? %>
+        <% end %>
+
+      <% end %>
     </div>
   </div>
 </div>

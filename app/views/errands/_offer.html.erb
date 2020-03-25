@@ -1,0 +1,16 @@
+<div id="<%= dom_id offer %>" class="py-2 px-6 lg:px-12 border-b border-gray-300 hover:bg-blue-100">
+  <div class="flex flex-wrap items-center justify-between">
+    <div>
+      <h5 class="text-blue-500 text-lg"><%= offer.volunteer_name %></h5>
+      <div class="text-gray-500"><%= fa_icon 'map-marker-alt',
+                                             text: offer.volunteer_location %></div>
+    </div>
+
+    <div>
+      <%= button_to offer_acceptances_path(offer),
+                    class: 'btn btn-sm btn-primary' do %>
+        <%= fa_icon('check', text: 'Accept') %>
+      <% end %>
+    </div>
+  </div>
+</div>
