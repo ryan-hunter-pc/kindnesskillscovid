@@ -3,7 +3,7 @@ class Errand < ApplicationRecord
   belongs_to :volunteer, optional: true
   has_many :offers
 
-  enum status: { requested: 0 }
+  enum status: { requested: 0, offered: 1, accepted: 2, completed: 3, cancelled: 4 }
 
   validates :short_description, presence: true
 

@@ -12,7 +12,9 @@ Rails.application.routes.draw do
     resources :offers, only: [:new, :create]
   end
 
-  resources :offers, only: [:index, :show]
+  resources :offers, only: [:index, :show] do
+    resources :acceptances, only: [:create]
+  end
 
   namespace :admin do
     resources :users, except: [:new, :destroy]

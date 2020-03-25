@@ -19,4 +19,22 @@ RSpec.describe Offer, type: :model do
       expect(offer.errand_location).to eq "Park City, UT"
     end
   end
+
+  describe '#volunteer_name' do
+    it 'returns the full name of the volunteer' do
+      volunteer = build_stubbed(:volunteer, first_name: 'Bob', last_name: 'Smith')
+      offer = build(:offer, volunteer: volunteer)
+
+      expect(offer.volunteer_name).to eq "Bob Smith"
+    end
+  end
+
+  describe '#volunteer_location' do
+    it 'returns the city and state of the errand' do
+      volunteer = build_stubbed(:volunteer, city: "Park City", state: "UT")
+      offer = build(:offer, volunteer: volunteer)
+
+      expect(offer.volunteer_location).to eq "Park City, UT"
+    end
+  end
 end

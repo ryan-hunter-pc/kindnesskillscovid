@@ -9,4 +9,16 @@ class Volunteer < ApplicationRecord
   validates :city, presence: true
   validates :state, presence: true
   validates :zip, presence: true
+
+  def full_name
+    [first_name, last_name].join(" ")
+  end
+
+  def location
+    [city, state].join(", ")
+  end
+
+  def to_s
+    full_name
+  end
 end
