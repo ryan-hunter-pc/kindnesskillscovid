@@ -5,6 +5,10 @@ class OffersController < ApplicationController
     @offers = current_user.offers
   end
 
+  def show
+    @offer = Offer.find(params[:id])
+  end
+
   def new
     errand = Errand.find(params[:errand_id])
     @offer = errand.offers.build
