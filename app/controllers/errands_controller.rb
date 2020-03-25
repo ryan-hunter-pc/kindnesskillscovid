@@ -48,7 +48,7 @@ class ErrandsController < ApplicationController
   def errand_params
     params
       .require(:errand)
-      .permit(:short_description, :full_description)
+      .permit(:status, :short_description, :full_description)
       .merge(customer_id: current_user.customer.id)
   end
 end

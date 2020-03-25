@@ -4,6 +4,7 @@ module ApplicationHelper
       requested: "yellow",
       submitted: "yellow",
       accepted: "blue",
+      completed: "green",
     }
 
     color = status_colors[model.status.to_sym]

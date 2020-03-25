@@ -38,9 +38,9 @@
     <% end %>
 
     <div class="buttons mt-12 flex flex-wrap items-center justify-end">
-      <% if current_user.customer? %>
+      <% if current_user.customer? && current_user.customer == @errand.customer %>
 
-        <% if @errand.requested? && current_user.customer == @errand.customer %>
+        <% if @errand.requested? %>
           <%= link_to fa_icon('trash', text: 'Delete Errand'),
                       @errand,
                       method: :delete,
@@ -48,6 +48,17 @@
                       data: {
                           confirm: 'Are you sure you want to permanently remove this errand?',
                       } %>
+        <% elsif @errand.accepted? %>
+          <%= button_to @errand,
+                        method: :patch,
+                        class: 'btn btn-success',
+                        params: {
+                            errand: {
+                                status: 'completed',
+                            },
+                        } do %>
+            <%= fa_icon 'check', text: 'Mark as Completed' %>
+          <% end %>
         <% end %>
 
       <% elsif current_user.volunteer? %>
