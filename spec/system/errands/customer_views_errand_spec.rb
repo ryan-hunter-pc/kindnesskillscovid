@@ -16,7 +16,7 @@ RSpec.describe "Customer views errand", type: :system do
     visit errand_path(errand, as: errand.customer.user)
 
     expect(page).to have_css('.short_description', text: errand.short_description)
-    expect(page).to have_css('.status', text: errand.status)
+    expect(page).to have_css('.status', text: errand.status.titleize)
     expect(page).to have_css('.full_description', text: errand.full_description)
   end
 

@@ -24,7 +24,7 @@ RSpec.describe "Customer edits errand", type: :system do
 
     expect(page).to have_content 'Errand saved'
     expect(page).to have_css('.short_description', text: "New short description")
-    expect(page).to have_css('.status', text: "requested")
+    expect(page).to have_css('.status', text: "Requested")
     expect(page).to have_css('.full_description', text: "New long description")
   end
 

@@ -23,6 +23,6 @@ module ApplicationHelper
     ]
     classes << options.delete(:class)
 
-    content_tag :span, model.status, class: classes.join(' ')
+    content_tag :span, model.status.titleize, class: classes.join(' ')
   end
 end
