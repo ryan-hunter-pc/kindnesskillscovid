@@ -5,6 +5,7 @@ namespace :dev do
       raise 'This task can only be run in the development environment'
     end
 
+    admin_user = User.create! email: 'admin@example.com', password: 'password', admin: true
     customer_user = User.create! email: 'customer@example.com', password: 'password'
     volunteer_user = User.create! email: 'volunteer@example.com', password: 'password'
     customer_user2 = User.create! email: 'customer2@example.com', password: 'password'
