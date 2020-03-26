@@ -29,7 +29,7 @@
 
     <div class="full_description mt-6"><%= simple_format @errand.full_description, class: 'py-1' %></div>
 
-    <% if current_user.customer? && @errand.offers.submitted.present? %>
+    <% if current_user.customer? && @errand.requested? && @errand.offers.submitted.present? %>
       <div class="offers mt-12">
         <h4 class="text-lg font-semibold">Offers to run this errand</h4>
 
