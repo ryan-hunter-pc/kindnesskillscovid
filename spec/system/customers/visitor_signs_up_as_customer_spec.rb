@@ -16,7 +16,7 @@ RSpec.describe "Visitor signs up as customer", type: :system do
     click_on "Continue"
 
     expect(page).to have_content "Account created successfully"
-    expect(page).to have_content "Dashboard"
+    expect(page).to have_content "My Errands"
     user = User.last
     expect(user.email).to eq "bob@example.com"
     customer = Customer.last
