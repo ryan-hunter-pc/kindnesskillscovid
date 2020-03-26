@@ -1,6 +1,6 @@
 class ErrandsController < ApplicationController
   def index
-    @errands = current_user.errands
+    @errands = current_user.errands.order(:status)
   end
 
   def search
