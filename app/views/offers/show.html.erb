@@ -28,6 +28,10 @@
       </div>
     <% end %>
 
+    <% if @offer.message.present? %>
+      <div class="mt-6 text-orange-500"><%= simple_format @offer.message %></div>
+    <% end %>
+
     <div class="buttons mt-12 flex flex-wrap items-center justify-end">
       <% if @offer.submitted? %>
         <%= link_to fa_icon('trash', text: 'Remove Offer'),
