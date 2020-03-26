@@ -50,7 +50,7 @@
                       data: {
                           confirm: 'Are you sure you want to permanently remove this errand?',
                       } %>
-        <% elsif @errand.accepted? %>
+        <% elsif @errand.assigned? %>
           <%= button_to @errand,
                         method: :patch,
                         class: 'btn btn-success',

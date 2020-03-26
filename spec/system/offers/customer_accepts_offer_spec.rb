@@ -14,6 +14,6 @@ RSpec.describe "Customer accepts offer", type: :system do
 
     expect(page).to have_content 'Offer accepted'
     expect(page).to have_current_path(errand_path(errand))
-    expect(page).to have_css('.status', text: 'Accepted')
+    expect(page).to have_css('.status', text: 'Assigned')
   end
 end

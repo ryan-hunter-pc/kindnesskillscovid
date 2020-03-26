@@ -30,7 +30,7 @@ class Acceptance
       offer.accepted_at = Time.current
       offer.save!
 
-      errand.status = 'accepted'
+      errand.status = 'assigned'
       errand.volunteer = offer.volunteer
       errand.save!
 

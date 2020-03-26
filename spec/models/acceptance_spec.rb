@@ -24,7 +24,7 @@ RSpec.describe Acceptance do
       expect(offer.accepted_at).to eq current_time
     end
 
-    it 'sets the errand as accepted' do
+    it 'sets the errand as assigned' do
       errand = create(:errand)
       offer = create(:offer, errand: errand)
 
@@ -32,7 +32,7 @@ RSpec.describe Acceptance do
       acceptance.save
 
       errand.reload
-      expect(errand.status).to eq 'accepted'
+      expect(errand.status).to eq 'assigned'
     end
 
     it 'sets the volunteer on the errand' do
