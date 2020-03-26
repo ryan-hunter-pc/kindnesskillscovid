@@ -4,7 +4,11 @@ class ErrandsController < ApplicationController
   end
 
   def search
-    @errands = Errand.requested.order(created_at: :desc).limit(10)
+    if current_user.volunteer?
+      @errands = Errand.offerable_for(current_user.volunteer)
+    else
+      @errands = Errand.none
+    end
   end
 
   def show

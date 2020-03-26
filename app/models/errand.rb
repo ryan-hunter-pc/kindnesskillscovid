@@ -8,4 +8,9 @@ class Errand < ApplicationRecord
   validates :short_description, presence: true
 
   delegate :city, :state, to: :customer
+
+  def self.offerable_for(volunteer)
+    already_offered = joins(:offers).where(offers: { status: 'submitted', volunteer: volunteer })
+    requested.where.not(id: already_offered.pluck(:id))
+  end
 end
