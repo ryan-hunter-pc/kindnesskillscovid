@@ -16,18 +16,25 @@
   </div>
 
   <section>
-    <%= sidebar_link_to 'Dashboard', dashboard_path, icon: 'tachometer-alt' %>
-    <%= sidebar_link_to 'My Errands', errands_path, icon: 'running' %>
+    <% if current_user.customer? %>
+      <%= sidebar_link_to 'My Errands', errands_path, icon: 'running' %>
 
-    <% if current_user.volunteer? %>
+    <% elsif current_user.volunteer? %>
+      <%= sidebar_link_to 'My Errands', errands_path, icon: 'running' %>
       <%= sidebar_link_to 'My Offers', offers_path, icon: 'hand-pointer' %>
+
+    <% elsif current_user.admin? %>
+      <%= sidebar_link_to 'Dashboard', dashboard_path, icon: 'tachometer-alt' %>
+
     <% end %>
   </section>
 
-  <section class="mt-8">
-    <div class="uppercase text-sm tracking-wide text-gray-600 px-4">Admin</div>
-    <%= sidebar_link_to 'Manage Users', admin_users_path, icon: 'users-cog' %>
-  </section>
+  <% if current_user.admin? %>
+    <section class="mt-8">
+      <div class="uppercase text-sm tracking-wide text-gray-600 px-4">Admin</div>
+      <%= sidebar_link_to 'Manage Users', admin_users_path, icon: 'users-cog' %>
+    </section>
+  <% end %>
 
   <section class="mt-8">
     <div class="uppercase text-sm tracking-wide text-gray-600 px-4">Account</div>
