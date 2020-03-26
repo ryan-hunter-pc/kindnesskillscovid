@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     resources :offers, only: [:new, :create]
   end
 
-  resources :offers, only: [:index, :show] do
+  resources :offers, only: [:index, :show, :destroy] do
     resources :acceptances, only: [:create]
   end
 

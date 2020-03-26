@@ -5,10 +5,12 @@
 <% end %>
 
 <%= content_for :right_menu do %>
-  <%= link_to fa_icon('pencil-alt'),
-              edit_errand_path(@errand),
-              title: 'Edit Errand',
-              class: 'btn btn-warning' if current_user.customer == @errand.customer %>
+  <% if current_user.customer? && current_user.customer == @errand.customer %>
+    <%= link_to fa_icon('pencil-alt'),
+                edit_errand_path(@errand),
+                title: 'Edit Errand',
+                class: 'btn btn-warning' if @errand.status.in?(%w[requested offered accepted]) %>
+  <% end %>
 <% end %>
 
 <div class="max-w-3xl mx-auto p-6 lg:mt-12 lg:rounded lg:shadow-md">
@@ -27,7 +29,7 @@
 
     <div class="full_description mt-6"><%= simple_format @errand.full_description, class: 'py-1' %></div>
 
-    <% if current_user.customer? && @errand.offers.submitted.present? %>
+    <% if current_user.customer? && @errand.requested? && @errand.offers.submitted.present? %>
       <div class="offers mt-12">
         <h4 class="text-lg font-semibold">Offers to run this errand</h4>
 
@@ -48,7 +50,7 @@
                       data: {
                           confirm: 'Are you sure you want to permanently remove this errand?',
                       } %>
-        <% elsif @errand.accepted? %>
+        <% elsif @errand.assigned? %>
           <%= button_to @errand,
                         method: :patch,
                         class: 'btn btn-success',

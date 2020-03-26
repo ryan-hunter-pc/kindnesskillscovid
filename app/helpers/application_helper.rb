@@ -4,6 +4,7 @@ module ApplicationHelper
       requested: "yellow",
       submitted: "yellow",
       accepted: "blue",
+      assigned: "blue",
       completed: "green",
     }
 

@@ -21,6 +21,18 @@ RSpec.describe "Volunteer searches errands", type: :system do
     expect_to_see errand2
   end
 
+  scenario 'does not see errands already offered' do
+    volunteer = create(:volunteer)
+    errand1 = create(:errand, status: 'requested')
+    errand2 = create(:errand, status: 'requested')
+    create(:offer, status: 'submitted', errand: errand2, volunteer: volunteer)
+
+    visit search_errands_path(as: volunteer.user)
+
+    expect_to_see errand1
+    expect_to_not_see errand2
+  end
+
   def expect_to_see(errand)
     expect(page).to have_content errand.short_description
   end

@@ -8,5 +8,11 @@ FactoryBot.define do
         create(:customer, user: user)
       end
     end
+
+    factory :volunteer_user do
+      after(:create) do |user, evaluator|
+        create(:volunteer, user: user)
+      end
+    end
   end
 end

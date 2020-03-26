@@ -11,8 +11,8 @@ RSpec.describe "Volunteer views their errands", type: :system do
 
   scenario 'sees list of errands they have been selected to run' do
     volunteer = create(:volunteer)
-    errand1 = create(:errand, volunteer: volunteer, status: 'accepted')
-    errand2 = create(:errand, volunteer: volunteer, status: 'accepted')
+    errand1 = create(:errand, volunteer: volunteer, status: 'assigned')
+    errand2 = create(:errand, volunteer: volunteer, status: 'assigned')
     errand3 = create(:errand)
 
     visit errands_path(as: volunteer.user)
